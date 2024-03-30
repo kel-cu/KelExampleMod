@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "id": "example",
+  "name": "Example",
+  "version": "${version}",
+  "description": "Example description",
+  "authors": ["Im_Kel"],
+  "contact": {
+    "homepage": "https://modrinth.com/mod/example",
+    "sources": "https://github.com/simply-kel/KelExampleMod",
+    "issues": "https://github.com/simply-kel/example/issues",
+    "email": "kel@simplykel.ru"
+  },
+  "license": "MIT",
+  "icon": "assets/example/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "ru.kelcuprum.example.ExampleFabric"
+    ],
+    "modmenu": [
+      "ru.kelcuprum.example.screen.ModMenuIntegration"
+    ]
+  },
+  "mixins": [
+    "example.mixin.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.17",
+    "fabric": "*",
+    "alinlib": "*",
+    "minecraft": [">=1.20.2"]
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.modrinth": "https://modrinth.com/mod/example",
+        "modmenu.donate": "https://kelcuprum.ru/r/boo"
+      }
+    }
+  }
+}
