@@ -11,7 +11,7 @@ import ru.kelcuprum.alinlib.gui.screens.ConfigScreenBuilder;
 
 public class ConfigScreen {
     public static Screen build(Screen parent){
-        return new ConfigScreenBuilder(parent, Component.translatable("example.name"), InterfaceUtils.DesignType.FLAT)
+        return new ConfigScreenBuilder(parent, Component.translatable("example.name"))
                 .addPanelWidget(new ButtonBuilder(Component.translatable("example.config"), (s)-> Minecraft.getInstance().setScreen(ConfigScreen.build(parent))).build())
                 .addPanelWidget(new ButtonBuilder(Component.translatable("example.modrinth"), (s)-> Util.getPlatform().openUri("https://modrinth.com/")).build())
 

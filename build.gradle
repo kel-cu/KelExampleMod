@@ -1,7 +1,7 @@
 plugins {
-    id "com.github.johnrengelman.shadow" version "8.1.1" apply false
+    id "io.github.goooler.shadow" version "8.1.7" apply false
     id "architectury-plugin" version "3.4-SNAPSHOT"
-    id "dev.architectury.loom" version "1.4-SNAPSHOT" apply false
+    id "dev.architectury.loom" version "1.6-SNAPSHOT" apply false
     id "io.github.p03w.machete" version "2.+" apply false
 }
 
@@ -15,19 +15,14 @@ subprojects {
     loom {
         silentMojangMappingsLicense()
     }
+    configurations {shadowCommon}
     dependencies {
         minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
         mappings loom.layered() {
             officialMojangMappings()
-            parchment("org.parchmentmc.data:parchment-${rootProject.mc_parchment_version}:${rootProject.parchment_version}@zip")
+//            parchment("org.parchmentmc.data:parchment-${rootProject.mc_parchment_version}:${rootProject.parchment_version}@zip")
         }
         modImplementation "ru.kelcuprum.alinlib:AlinLib-common:${project.alinlib}"
-
-        subprojects.each {
-            implementation project(path: ":${it.name}", configuration: 'namedElements')
-            implementation project(path: ":${it.name}", configuration: 'shade')
-            include project("${it.name}:")
-        }
     }
 
     machete {
@@ -56,9 +51,13 @@ allprojects {
         maven { url = "https://jitpack.io/" }
     }
 
+    def targetJavaVersion = 17
+
     tasks.withType(JavaCompile).configureEach {
-        options.encoding = "UTF-8"
-        options.release.set(17)
+        it.options.encoding = "UTF-8"
+        if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible()) {
+            it.options.release = targetJavaVersion
+        }
     }
 
     java {
