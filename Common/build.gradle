@@ -1,6 +1,6 @@
 archivesBaseName = rootProject.archives_base_name + "-common"
 architectury {
-    common("neoforge", "fabric")
+    common("neoforge", "forge", "fabric")
 }
 dependencies {
     modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"

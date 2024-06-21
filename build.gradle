@@ -1,8 +1,8 @@
 plugins {
     id "io.github.goooler.shadow" version "8.1.7" apply false
-    id "architectury-plugin" version "3.4-SNAPSHOT"
-    id "dev.architectury.loom" version "1.6-SNAPSHOT" apply false
-    id "io.github.p03w.machete" version "2.+" apply false
+    id "architectury-plugin" version "+"
+    id "dev.architectury.loom" version "+" apply false
+    id "io.github.p03w.machete" version "+" apply false
 }
 
 architectury {
@@ -20,7 +20,6 @@ subprojects {
         minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
         mappings loom.layered() {
             officialMojangMappings()
-//            parchment("org.parchmentmc.data:parchment-${rootProject.mc_parchment_version}:${rootProject.parchment_version}@zip")
         }
         modImplementation "ru.kelcuprum.alinlib:AlinLib-common:${project.alinlib}"
     }
@@ -28,6 +27,11 @@ subprojects {
     machete {
         ignoredTasks.add("shadowJar")
         ignoredTasks.add("jar")
+    }
+    processResources {
+        filesMatching(["META-INF/mods.toml", "META-INF/neoforge.mods.toml", "fabric.mod.json"]) {
+            expand "project": project
+        }
     }
 
 }

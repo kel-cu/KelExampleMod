@@ -6,8 +6,8 @@ import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import ru.kelcuprum.example.screen.ConfigScreen;
 
 @Mod("example")
-public class ExampleForge {
-    public ExampleForge(){
+public class ExampleNeoForge {
+    public ExampleNeoForge(){
         Example.onInitializeClient();
         ModLoadingContext.get().registerExtensionPoint(
                 IConfigScreenFactory.class,
